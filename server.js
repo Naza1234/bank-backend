@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const corsOptions = {
-  origin: '*',
+  origin: 'https://defiaccess.info',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
 };
 
