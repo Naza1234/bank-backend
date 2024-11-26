@@ -1,5 +1,5 @@
 const User = require('../models/User');
-
+const bcrypt = require('bcrypt');
 // Create a new user
 exports.createUser = async (req, res) => {
     try {
@@ -23,15 +23,24 @@ exports.createUser = async (req, res) => {
     
 };
 
-// Login user without JWT token
 exports.loginUser = async (req, res) => {
     const { AccountNumber, Password } = req.body;
 
     try {
+        // Validate input
+        if (!AccountNumber || !Password) {
+            return res.status(400).json({ message: 'AccountNumber and Password are required' });
+        }
+
         // Check if user exists
         const user = await User.findOne({ AccountNumber });
         if (!user) {
             return res.status(400).json({ message: 'User not found' });
+        }
+
+        // Check if password exists
+        if (!user.Password) {
+            return res.status(500).json({ message: 'Password is not set for this user' });
         }
 
         // Check if password matches
@@ -40,20 +49,22 @@ exports.loginUser = async (req, res) => {
             return res.status(400).json({ message: 'Invalid credentials' });
         }
 
-        // Return the user ID as the "token"
+        // Return success response
         res.status(200).json({
             message: 'Login successful',
-            userId: user._id, // Send user ID as authentication token
+            userId: user._id,
             user: {
                 AccountName: user.AccountName,
                 AccountNumber: user.AccountNumber,
                 AvailableBalance: user.AvailableBalance,
-            }
+            },
         });
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error });
+        console.error('Error during login:', error);
+        res.status(500).json({ message: 'Server error', error: error.message || 'Unknown error' });
     }
 };
+
 
 
 // Get user data by userId excluding password
