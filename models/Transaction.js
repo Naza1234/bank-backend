@@ -9,7 +9,7 @@ const transactionSchema = new mongoose.Schema({
     amount: { type: Number, required: true },
     transactionType: { type: String, enum: ['debit', 'credit'], required: true },
     status: { type: String, enum: ['pending', 'approved'], default: 'pending' }
-});
+}, { timestamps: true });
 
 const Transaction = mongoose.model('Transaction', transactionSchema);
 
