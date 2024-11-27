@@ -3,13 +3,14 @@ const User = require('../models/User');
 
 // Create a new transaction
 exports.createTransaction = async (req, res) => {
-    const { transactionName, type, userId, currentAccountBalance, amount, transactionType, status } = req.body;
+    const { transactionName, type, dateTransaction, userId, currentAccountBalance, amount, transactionType, status } = req.body;
 
     try {
         // Create a new transaction
         const transaction = new Transaction({
             transactionName,  // New field added here
             type,
+            dateTransaction,
             userId,
             currentAccountBalance,
             amount,
@@ -85,6 +86,7 @@ exports.updateTransactionById = async (req, res) => {
         // Update the transaction fields
         transaction.transactionName = transactionName || transaction.transactionName; // Update transactionName
         transaction.type = type || transaction.type;
+        transaction.dateTransaction =  dateTransaction || transaction.dateTransaction;
         transaction.userId = userId || transaction.userId;
         transaction.currentAccountBalance = currentAccountBalance || transaction.currentAccountBalance;
         transaction.amount = amount || transaction.amount;
