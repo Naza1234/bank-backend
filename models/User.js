@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema({
     RoutingNumber: { type: String, required: true },
     InterestRate: { type: Number, default: 0 },
     InterestIn2024: { type: Number, default: 0 },
-    LastStatementDate: {type: Date, default: Date.now },
+    LastStatementDate: {type: String, required: true },
     AvailableBalance: { type: Number, default: 0 },
     PresentBalance: { type: Number, default: 0 },
     Password: { type: String, required: true },
