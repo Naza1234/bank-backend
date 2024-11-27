@@ -70,7 +70,7 @@ exports.loginUser = async (req, res) => {
 // Get user data by userId excluding password
 exports.getUserById = async (req, res) => {
     const { userId } = req.params;  // Get userId from the URL parameter
-   console.log(userId);
+
     try {
         // Find the user by ID
         const user = await User.findById(userId)

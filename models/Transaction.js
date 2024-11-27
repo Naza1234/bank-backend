@@ -4,7 +4,7 @@ const transactionSchema = new mongoose.Schema({
     transactionName: { type: String, required: true }, // New field
     type: { type: String, required: true }, // Sender or Receiver
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: false },
-    date: { type: String, required: true },
+    date: { type: String, required: false },
     currentAccountBalance: { type: Number, required: true },
     amount: { type: Number, required: true },
     transactionType: { type: String, enum: ['debit', 'credit'], required: true },
