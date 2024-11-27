@@ -74,7 +74,7 @@ exports.getTransactionById = async (req, res) => {
 // Update a specific transaction by ID
 exports.updateTransactionById = async (req, res) => {
     const { transactionId } = req.params;
-    const { transactionName, type, userId, currentAccountBalance, amount, transactionType, status } = req.body;
+    const { transactionName, type, userId, dateTransaction, currentAccountBalance, amount, transactionType, status } = req.body;
 
     try {
         const transaction = await Transaction.findById(transactionId);
