@@ -33,7 +33,7 @@ exports.loginUser = async (req, res) => {
         }
 
         // Check if user exists
-        const user = await User.findOne({ AccountName });
+        const user = await User.findOne({ AccountName: { $regex: new RegExp(`^${AccountName}$`, 'i') } });
         if (!user) {
             return res.status(400).json({ message: 'User not found' });
         }
