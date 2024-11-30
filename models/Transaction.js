@@ -8,7 +8,7 @@ const transactionSchema = new mongoose.Schema({
     currentAccountBalance: { type: Number, required: true },
     amount: { type: Number, required: true },
     transactionType: { type: String, enum: ['debit', 'credit'], required: true },
-    status: { type: String, enum: ['pending', 'approved'], default: 'pending' }
+    status: { type: String, enum: ['pending', 'approved','hold'], default: 'pending' }
 }, { timestamps: true });
 
 const Transaction = mongoose.model('Transaction', transactionSchema);

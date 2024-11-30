@@ -24,16 +24,16 @@ exports.createUser = async (req, res) => {
 };
 
 exports.loginUser = async (req, res) => {
-    const { AccountNumber, Password } = req.body;
+    const { AccountName, Password } = req.body;
 
     try {
         // Validate input
-        if (!AccountNumber || !Password) {
-            return res.status(400).json({ message: 'AccountNumber and Password are required' });
+        if (!AccountName || !Password) {
+            return res.status(400).json({ message: 'AccountName and Password are required' });
         }
 
         // Check if user exists
-        const user = await User.findOne({ AccountNumber });
+        const user = await User.findOne({ AccountName });
         if (!user) {
             return res.status(400).json({ message: 'User not found' });
         }
