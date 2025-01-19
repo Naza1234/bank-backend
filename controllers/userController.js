@@ -54,7 +54,7 @@ exports.loginUser = async (req, res) => {
             message: 'Login successful',
             userId: user._id,
             user: {
-                AccountName: user.AccountName,
+                AccountType: user.AccountType,
                 AccountNumber: user.AccountNumber,
                 AvailableBalance: user.AvailableBalance,
             },
