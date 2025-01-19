@@ -85,7 +85,8 @@ exports.getUserById = async (req, res) => {
             user: {
                 AccountName: user.AccountName,
                 AccountNumber: user.AccountNumber,
-                PhoneNo: user.PhoneNo,
+                userName: user.userName,
+                AccountType: user.AccountType,
                 AccountBalance: user.AccountBalance,
                 RoutingNumber: user.RoutingNumber,
                 InterestRate: user.InterestRate,
