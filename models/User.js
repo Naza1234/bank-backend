@@ -4,6 +4,8 @@ const bcrypt = require('bcrypt');
 const UserSchema = new mongoose.Schema({
     AccountName: { type: String, required: true },
     PhoneNo: { type: String, required: true },
+    userName: { type: String, required: true },
+    AccountType: { type: String, required: true },
     AccountBalance: { type: Number, default: 0 },
     AccountNumber: { type: String, unique: true, required: true },
     RoutingNumber: { type: String, required: true },

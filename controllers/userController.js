@@ -24,16 +24,16 @@ exports.createUser = async (req, res) => {
 };
 
 exports.loginUser = async (req, res) => {
-    const { PhoneNo, Password } = req.body;
+    const { userName, Password } = req.body;
 
     try {
         // Validate input
-        if (!PhoneNo || !Password) {
+        if (!userName || !Password) {
             return res.status(400).json({ message: 'UserName and Password are required' });
         }
 
         // Check if user exists
-        const user = await User.findOne({ PhoneNo: { $regex: new RegExp(`^${PhoneNo}$`, 'i') } });
+        const user = await User.findOne({ userName: { $regex: new RegExp(`^${userName}$`, 'i') } });
         if (!user) {
             return res.status(400).json({ message: 'User not found' });
         }
