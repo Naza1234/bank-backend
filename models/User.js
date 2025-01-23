@@ -17,22 +17,7 @@ const UserSchema = new mongoose.Schema({
     Password: { type: String, required: true },
 }, { timestamps: true });
 
-// Encrypt password before saving
-UserSchema.pre('save', async function(next) {
-    if (!this.isModified('Password')) return next();
-    this.Password = await bcrypt.hash(this.Password, 10);
-    next();
-});
 
-UserSchema.pre('findOneAndUpdate', async function(next) {
-    // Check if the password is being updated
-    if (this._update.Password) {
-        const password = this._update.Password;
-         // Only hash the password if it's been updated
-        this._update.Password = await bcrypt.hash(password, 10);
-    }
-    next();
-});
 
 
 module.exports = mongoose.model('User', UserSchema);
